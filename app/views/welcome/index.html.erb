@@ -1,0 +1,6 @@
+<h1>Welcome</h1>
+<% if current_user %>
+     <h1>Welcome <%= current_user.username %></h1>
+        <%= link_to "Sign Out", signout_path %>
+<% end %>
+<%= link_to "Sign Up", users_new_path %>

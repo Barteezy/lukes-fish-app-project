@@ -22,7 +22,7 @@ feature 'user auth' do
     fill_in "Email", :with => "taco@taco.com"
     fill_in "Password", :with => "taco"
 
-    cick_on "Sign In"
+    click_on "Sign In"
 
     expect(page).to have_content "Welcome taco"
   end

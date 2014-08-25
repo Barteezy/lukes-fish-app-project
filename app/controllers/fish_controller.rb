@@ -1,30 +1,25 @@
 class FishController < ApplicationController
   before_action :set_fish, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_current_user, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
-  # GET /fish
-  # GET /fish.json
   def index
     @fish = Fish.all
   end
 
-  # GET /fish/1
-  # GET /fish/1.json
   def show
   end
 
-  # GET /fish/new
   def new
-    @fish = Fish.new
+    @fish = current_user.fish.build
   end
 
-  # GET /fish/1/edit
   def edit
   end
 
-  # POST /fish
-  # POST /fish.json
+
   def create
-    @fish = Fish.new(fish_params)
+    @fish = current_user.fish.build(fish_params)
 
     respond_to do |format|
       if @fish.save
@@ -37,8 +32,7 @@ class FishController < ApplicationController
     end
   end
 
-  # PATCH/PUT /fish/1
-  # PATCH/PUT /fish/1.json
+
   def update
     respond_to do |format|
       if @fish.update(fish_params)
@@ -51,8 +45,7 @@ class FishController < ApplicationController
     end
   end
 
-  # DELETE /fish/1
-  # DELETE /fish/1.json
+
   def destroy
     @fish.destroy
     respond_to do |format|
@@ -62,12 +55,15 @@ class FishController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_fish
       @fish = Fish.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    def correct_user
+      @fish = current_user.fish.find_by(id: params[:id])
+      redirect_to fish_path, notice: "not authorized to edit fish" if @fish.nil?
+    end
+
     def fish_params
       params.require(:fish).permit(:species, :location, :bait)
     end

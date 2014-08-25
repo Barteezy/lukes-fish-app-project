@@ -1,0 +1,32 @@
+
+
+<%= form_for(current_user) do |f| %>
+    <% if current_user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(current_user.errors.count, "error") %> prohibited this fish from being saved:</h2>
+
+          <ul>
+            <% current_user.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :image %>
+      <%= f.file_field :image, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :location %><br>
+      <%= f.text_field :location %>
+    </div>
+    <div class="field">
+      <%= f.label :favorite_fish %><br>
+      <%= f.text_field :favorite_fish %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Update Profile" %>
+    </div>
+<% end %>

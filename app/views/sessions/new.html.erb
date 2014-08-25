@@ -1,5 +1,5 @@
 <h1>Sign In</h1>
-<%= form_for @user, url: signin_path, html: { class: "signin-form"} do |f| %>
+<%= form_for @user, url: sessions_path do |f| %>
 
     <%= f.label :email %>
     <%= f.text_field :email %>

@@ -13,6 +13,7 @@
   <tbody>
     <% @fish.each do |fish| %>
       <tr>
+        <td><%= image_tag fish.image.url(:medium) %></td>
         <td><%= fish.species %></td>
         <td><%= fish.location %></td>
         <td><%= fish.bait %></td>

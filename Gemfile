@@ -20,12 +20,12 @@ gem 'autoprefixer-rails'
 gem 'paperclip', '~> 4.1'
 gem 'masonry-rails'
 
-
 group :test, :development do
   gem 'rspec-rails', '~> 3.0.2'
   gem 'capybara', '~> 2.3.0'
-
 end
+
+gem 'rails_12factor', '~>0.0.2', group: :production
 
 
 

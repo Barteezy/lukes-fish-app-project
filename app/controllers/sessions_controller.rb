@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       redirect_to user_path(current_user)
     else
       @user = User.new(email: params[:user][:email])
-      @user.errors[:base] << "Username / password is invalid"
+      @user.errors[:base] << "Email / password is invalid"
       render :new
     end
   end
